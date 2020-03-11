@@ -2,11 +2,12 @@ package space.devport.minions.template;
 
 import lombok.Getter;
 import lombok.Setter;
+import space.devport.minions.utils.ActionType;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MinionUpgradeLevel {
+public class MinionLevel {
 
     @Getter
     @Setter
@@ -31,7 +32,7 @@ public class MinionUpgradeLevel {
     // if that is absent.. which it should never,.. abort loading - ppl r stupid.
 
     @Getter
-    private List<MinionAction> actions = new ArrayList<>();
+    private List<ActionType> actions = new ArrayList<>();
 
     @Getter
     @Setter
