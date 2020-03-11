@@ -32,7 +32,7 @@ public class MinionLevel {
     // if that is absent.. which it should never,.. abort loading - ppl r stupid.
 
     @Getter
-    private List<ActionType> actions = new ArrayList<>();
+    private final List<ActionType> actions = new ArrayList<>();
 
     @Getter
     @Setter
@@ -48,5 +48,9 @@ public class MinionLevel {
 
     public MinionLevel(int level) {
         this.level = level;
+    }
+
+    public void addAction(ActionType action) {
+        actions.add(action);
     }
 }

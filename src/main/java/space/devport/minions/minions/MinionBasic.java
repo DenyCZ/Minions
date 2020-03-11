@@ -3,12 +3,8 @@ package space.devport.minions.minions;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.inventory.Inventory;
+import space.devport.minions.MinionsPlugin;
 import space.devport.minions.minions.minion.mEntity;
-import space.devport.minions.utils.ActionType;
-import space.devport.minions.utils.InventoryType;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MinionBasic {
 
@@ -42,7 +38,7 @@ public class MinionBasic {
 
     protected void onLoad() {
         if(!this.isInit || Author.isEmpty() || Id.isEmpty()) {
-            System.out.println("Failed to load minion!!");
+            MinionsPlugin.getInstance().getConsoleOutput().debug("Failed to load minion!!");
             return;
         }
     }
@@ -57,7 +53,7 @@ public class MinionBasic {
         if(this.isSpawning ||
                 (this.mProperties.isHealthBased() && this.mProperties.getHealth() <= 0) ||
                 this.getMinionEntity().getArmorStand() == null || this.getMinionEntity().getArmorStand().isDead()) {
-            System.out.println("Minion can't perform action");
+            MinionsPlugin.getInstance().getConsoleOutput().debug("Minion can't perform action");
             return false;
         }
         return true;

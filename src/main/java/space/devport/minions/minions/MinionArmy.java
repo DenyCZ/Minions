@@ -9,7 +9,7 @@ import java.util.UUID;
 public class MinionArmy {
 
     @Getter
-    private UUID leader;
+    private final UUID leader;
 
     @Getter
     private final List<Class<? extends MinionBasic>> minions = new ArrayList<>();

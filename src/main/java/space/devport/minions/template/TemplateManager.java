@@ -1,7 +1,9 @@
 package space.devport.minions.template;
 
+import com.google.common.base.Strings;
 import lombok.Getter;
 import space.devport.minions.MinionsPlugin;
+import space.devport.minions.utils.ActionType;
 import space.devport.utils.configutil.Configuration;
 
 import java.io.File;
@@ -87,6 +89,23 @@ public class TemplateManager {
         level.setExp(cfg.getFileConfiguration().getInt(path + ".cost.exp", 0));
         level.setMoney(cfg.getFileConfiguration().getDouble(path + ".cost.money", 0));
 
+        String actionsStr = cfg.getFileConfiguration().getString(path + ".properties.actions");
+
+        if (!Strings.isNullOrEmpty(actionsStr)) {
+            String[] arr = actionsStr.split(",");
+
+            for (String action : arr)
+                level.addAction(ActionType.fromString(action));
+        } else {
+            if (minLevel != null)
+                minLevel.getActions().forEach(level::addAction);
+        }
+
+        if (level.getActions().isEmpty()) {
+            MinionsPlugin.getInstance().getConsoleOutput().warn("Could not load level on path " + path + ", has to have at least one action configured.");
+            return null;
+        }
+
         // Properties
         level.setRadius(cfg.getFileConfiguration().getInt(path + ".properties.radius",
                 template.hasLevel(minLvl) ? template.getLevel(lvl).getRadius() : MinionsPlugin.getInstance().getConfig().getInt("defaults.radius", 0)));
@@ -100,6 +119,7 @@ public class TemplateManager {
         return level;
     }
 
+    // Dunno if needed
     private String stripExtension(String path) {
         path = path.replace(".yaml", "");
         path = path.replace(".yml", "");
