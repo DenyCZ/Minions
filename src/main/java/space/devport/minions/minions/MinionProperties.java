@@ -12,8 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 public class MinionProperties {
 
-    // TODO Implement DevportUtils RewardPack & ConditionPack once they're done. @Wertik
-    // TODO: Reading from Config @Wertik
+    // TODO: Reading from Config @Wertik // Dont @ me u bastard
 
     @Getter @Setter private int radius;
     @Getter @Setter private int level;

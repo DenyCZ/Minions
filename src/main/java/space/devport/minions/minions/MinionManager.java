@@ -11,7 +11,7 @@ public class MinionManager {
     @Getter
     private final HashMap<UUID, MinionArmy> minionCache = new HashMap<>();
 
-    // Update minions based on templates, bcs they could change on plugin reload
+    // Update minions based on templates & their levels, bcs they could change on plugin reload
     public void reloadAll() {
 
     }

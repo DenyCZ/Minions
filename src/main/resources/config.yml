@@ -9,3 +9,9 @@ plugin-prefix: '&3Minions &8>> '
 
 # Name of the folder that contains templates
 template-folder: 'templates'
+
+# Default values for templates
+defaults:
+  radius: 1
+  action-interval: 10
+  action-amount: 1

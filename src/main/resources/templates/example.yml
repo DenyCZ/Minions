@@ -24,8 +24,8 @@ menu-items:
       - '&7Click to buy'
 
 # Minion upgrade system
+# Takes the lowest level as the base -- start
 levels:
-  # Level 0 is the base, this is the level which the minion has when placed down for the first time
   '0':
     properties:
       # Actions the minion can perform

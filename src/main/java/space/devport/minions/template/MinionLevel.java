@@ -45,4 +45,8 @@ public class MinionLevel {
     @Getter
     @Setter
     private int actionAmount;
+
+    public MinionLevel(int level) {
+        this.level = level;
+    }
 }
