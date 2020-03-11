@@ -6,3 +6,6 @@
 debug-enabled: true
 
 plugin-prefix: '&3Minions &8>> '
+
+# Name of the folder that contains templates
+template-folder: 'templates'

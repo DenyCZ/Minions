@@ -1,0 +1,71 @@
+# Customisation file for ${project.name}
+#
+# Version: ${project.version}
+
+# Menu customisation
+menus:
+  shop:
+    # Title of the Inventory
+    title: '&8Minion Shop'
+    slots: 27
+    # Inventory matrix, each line represents a row in the inventory.
+    matrix:
+      - '         '
+      - ' xxxxxxx '
+      - '    c    '
+    fill-blank: true
+    items:
+      # Item with the name 'minion' will be used for minion shop-items
+      # You can override this item in <minion_name>.yml files
+      minion:
+        name: '&7Buy minion: %minion_displayName%'
+        matrix-char: 'x'
+        type: WOODEN_HOE
+        lore:
+          - '&7A minion you just must have!'
+          - ''
+          - '&6>> &7Click to buy %minion_displayName%'
+      # Item with the name 'close' will close the menu when clicked
+      close:
+        name: '&cClose'
+        type: IRON_DOOR
+        lore:
+          - '&7&oCy@! By-ye!'
+          - ''
+          - '&c>> &7Click to close the shop'
+      filler:
+        name: ''
+        matrix-char: ' '
+        type: STAINED_GLASS_PANE
+        damage: 7
+  # Minions menu
+  minions:
+    title: '&8Your minion army'
+    slots: 27
+    matrix:
+      - '         '
+      - ' xxxxxxx '
+      - '    c    '
+    items:
+      minion:
+        name: '%minion_displayName%'
+        type: WOODEN_HOE
+        matrix-char: 'x'
+        lore:
+          - '&7Radius: &f%minion_radius%'
+          - '&7Action: &f&minion_action%'
+          - ''
+          - '&3>> &7Click to open control menu'
+      # Item with the name 'close' will close the menu when clicked
+      close:
+        name: '&cClose'
+        type: IRON_DOOR
+        lore:
+          - '&7&oCy@! By-ye!'
+          - ''
+          - '&c>> &7Click to close the shop'
+      filler:
+        name: ''
+        matrix-char: ' '
+        type: STAINED_GLASS_PANE
+        damage: 7

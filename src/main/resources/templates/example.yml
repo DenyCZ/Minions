@@ -1,0 +1,62 @@
+# Template Example for ${project.name}
+#
+# Version: $[project.version}
+
+# Name of the template is taken from the file name.
+
+display-name: '&3A Cool Mining Minion'
+
+# When this section is not present, uses the default from config.yml
+menu-items:
+  minions:
+    name: '&7Minion: %minion_displayName%'
+    type: STONE_PICKAXE
+    matrix-char: 'x'
+    lore:
+      - '&7This minion is a cool one!'
+      - '&7Click to open control menu'
+  shop:
+    name: '&7Buy minion: %minion_displayName%'
+    type: STONE_PICKAXE
+    matrix-char: 'x'
+    lore:
+      - '&7Yo! This is a pretty cool mining minion!'
+      - '&7Click to buy'
+
+# Minion upgrade system
+levels:
+  # Level 0 is the base, this is the level which the minion has when placed down for the first time
+  '0':
+    properties:
+      # Actions the minion can perform
+      # When multiple are defined, performs them one after another & switched between them.
+      # Options: BREAK
+      actions: BREAK
+      # Radius in which the minion can operate
+      radius: 1
+      # How fast does the minion do stuff in seconds
+      action-interval: 10
+      # For ex. how many blocks the minion breaks each interval
+      action-amount: 1
+  '1':
+    # Cost to upgrade
+    cost:
+      # Experience cost
+      exp: 100
+      # Vault money
+      money: 1000.0
+      # TokenManager tokens
+      tokens: 10.0
+      # Item cost
+      items: stick;2,stone;3
+    # Rewards for the upgrade
+    properties:
+      radius: 2
+      action-interval: 7.5
+  '2':
+    cost:
+      money: 2000.0
+    properties:
+      radius: 3
+      action-interval: 5
+      action-amount: 2
