@@ -15,12 +15,12 @@ public class TemplateManager {
     private File templateFolder;
 
     public TemplateManager() {
-        this.templateFolder = new File(MinionsPlugin.getInstance().getDataFolder(), MinionsPlugin.getInstance().getConfig().getString("tempaltes-folder") + "/");
+        this.templateFolder = new File(MinionsPlugin.getInstance().getDataFolder(), MinionsPlugin.getInstance().getConfig().getString("template-folder") + "/");
     }
 
     // Reload the folder & load templates
     public void reload() {
-        this.templateFolder = new File(MinionsPlugin.getInstance().getDataFolder(), MinionsPlugin.getInstance().getConfig().getString("tempaltes-folder") + "/");
+        this.templateFolder = new File(MinionsPlugin.getInstance().getDataFolder(), MinionsPlugin.getInstance().getConfig().getString("template-folder") + "/");
     }
 
     // Load templates
