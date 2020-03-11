@@ -1,0 +1,8 @@
+# Configuration for ${project.name}
+#
+# Version: ${project.version}
+
+# Debug information
+debug-enabled: true
+
+plugin-prefix: '&3Minions &8>> '

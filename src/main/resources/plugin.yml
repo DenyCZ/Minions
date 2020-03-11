@@ -1,0 +1,4 @@
+name: Minions
+main: space.devport.minions.MinionsPlugin
+version: ${project.version}
+authors: [Wertik1206, Denyk]
