@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.bukkit.inventory.Inventory;
 import space.devport.minions.minions.minion.mEntity;
 import space.devport.minions.utils.ActionType;
+import space.devport.minions.utils.InventoryType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ public class MinionBasic {
 
     @Getter @Setter private String Author;
     @Getter @Setter private String Id;
+    @Getter private boolean isInit = false;
 
     @Getter @Setter private mEntity minionEntity;
     @Getter @Setter private boolean isSpawning;
@@ -24,15 +26,7 @@ public class MinionBasic {
     @Getter @Setter private int direction;
     @Getter @Setter private boolean invincible = true;
 
-    @Getter @Setter private int radius;
-    @Getter @Setter private int level;
-    @Getter @Setter private int maxLevel;
-    @Getter @Setter private int exp;
-
-    @Getter @Setter private int health = 0;
-    @Getter @Setter private boolean isHealthBased;
-    @Getter @Setter private int actionsSinceLastHealthDrop;
-    @Getter @Setter private int allowedActionsPerHealthUnit;
+    @Getter private MinionProperties mProperties;
 
     @Getter @Setter private int itemsCollected;
     @Getter @Setter private int actionsPerformed;
@@ -40,25 +34,28 @@ public class MinionBasic {
     @Getter @Setter private Inventory upgradeGui;
     @Getter @Setter private Inventory inventory;
 
-    private List<ActionType> _Actions;
-
     protected MinionBasic() {
-        _Actions = new ArrayList<ActionType>();
+        mProperties = new MinionProperties();
+
+        this.isInit = true;
     }
 
     protected void onLoad() {
-        if(Author.isEmpty() || Id.isEmpty()) {
+        if(!this.isInit || Author.isEmpty() || Id.isEmpty()) {
             System.out.println("Failed to load minion!!");
             return;
         }
     }
 
     protected void onSpawn() {
+        if(!this.isInit) {
+            return;
+        }
     }
 
     public boolean canDoAction() {
         if(this.isSpawning ||
-                (this.isHealthBased && this.health <= 0) ||
+                (this.mProperties.isHealthBased() && this.mProperties.getHealth() <= 0) ||
                 this.getMinionEntity().getArmorStand() == null || this.getMinionEntity().getArmorStand().isDead()) {
             System.out.println("Minion can't perform action");
             return false;
@@ -68,14 +65,11 @@ public class MinionBasic {
 
     protected void doAction() {
         this.actionsPerformed++;
-        if(this.isHealthBased) {
-            this.actionsSinceLastHealthDrop++;
-            if(this.actionsSinceLastHealthDrop >= this.allowedActionsPerHealthUnit) {
-                this.health--;
-                this.actionsSinceLastHealthDrop = 0;
-                if(this.health >= 0) {
-
-                }
+        if(this.mProperties.isHealthBased()) {
+            this.mProperties.setActionsSinceLastHealthDrop(this.mProperties.getActionsSinceLastHealthDrop()+1);
+            if(this.mProperties.getActionsSinceLastHealthDrop() >= this.mProperties.getAllowedActionsPerHealthUnit()) {
+                this.mProperties.setHealth(this.mProperties.getHealth()-1);
+                this.mProperties.setActionsSinceLastHealthDrop(0);
             }
         }
 

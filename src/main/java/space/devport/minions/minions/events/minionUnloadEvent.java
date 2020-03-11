@@ -1,4 +1,4 @@
-package space.devport.minions.events;
+package space.devport.minions.minions.events;
 
 import lombok.Getter;
 import lombok.Setter;

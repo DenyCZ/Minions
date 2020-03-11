@@ -1,8 +1,7 @@
-package space.devport.minions.events;
+package space.devport.minions.minions.events;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import space.devport.minions.minions.MinionBasic;
 
