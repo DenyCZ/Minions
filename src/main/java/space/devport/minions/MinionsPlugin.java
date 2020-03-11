@@ -1,6 +1,7 @@
 package space.devport.minions;
 
 import lombok.Getter;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -9,6 +10,7 @@ import space.devport.minions.template.TemplateManager;
 import space.devport.utils.ConsoleOutput;
 import space.devport.utils.DevportUtils;
 import space.devport.utils.configutil.Configuration;
+import space.devport.utils.messageutil.StringUtil;
 
 public class MinionsPlugin extends JavaPlugin {
 
@@ -53,6 +55,26 @@ public class MinionsPlugin extends JavaPlugin {
 
         consoleOutput.info("--====-- Done --====--");
         consoleOutput.info("Reload took " + (System.currentTimeMillis() - start) + "ms");
+    }
+
+    public void reload(CommandSender s) {
+        long start = System.currentTimeMillis();
+
+        consoleOutput.setCmdSender(s);
+
+        cfg.load();
+
+        loadOptions();
+
+        templateManager.reload();
+        consoleOutput.info("Loaded " + templateManager.getTemplateCache().size() + " template(s)..");
+
+        minionManager.reloadAll();
+        consoleOutput.info("Loaded " + minionManager.getMinionCache().size() + " minion army(ies)..");
+
+        consoleOutput.setCmdSender(null);
+
+        s.sendMessage(consoleOutput.getPrefix() + StringUtil.color("&aDone.. reload took &7" + (System.currentTimeMillis() - start) + "&ams."));
     }
 
     private void loadOptions() {
