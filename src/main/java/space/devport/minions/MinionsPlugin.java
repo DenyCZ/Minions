@@ -17,17 +17,10 @@ public class MinionsPlugin extends JavaPlugin {
     @Getter
     private static MinionsPlugin instance;
 
-    @Getter
-    private Configuration cfg;
-
-    @Getter
-    private ConsoleOutput consoleOutput;
-
-    @Getter
-    private TemplateManager templateManager;
-
-    @Getter
-    private MinionManager minionManager;
+    @Getter private Configuration cfg;
+    @Getter private ConsoleOutput consoleOutput;
+    @Getter private TemplateManager templateManager;
+    @Getter private MinionManager minionManager;
 
     @Override
     public void onEnable() {
@@ -35,7 +28,7 @@ public class MinionsPlugin extends JavaPlugin {
 
         long start = System.currentTimeMillis();
 
-        DevportUtils devportUtils = new DevportUtils();
+        DevportUtils devportUtils = new DevportUtils(this);
         consoleOutput = devportUtils.getConsoleOutput();
 
         cfg = new Configuration(this, "config");
@@ -62,7 +55,7 @@ public class MinionsPlugin extends JavaPlugin {
 
         consoleOutput.setCmdSender(s);
 
-        cfg.load();
+        cfg.reload();
 
         loadOptions();
 
@@ -84,7 +77,8 @@ public class MinionsPlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
-
+        minionManager.stopAll();
+        minionManager.saveAll();
     }
 
     @Override

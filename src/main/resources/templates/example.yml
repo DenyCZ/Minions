@@ -29,7 +29,7 @@ levels:
   '0':
     properties:
       # Actions the minion can perform
-      # When multiple are defined, performs them one after another & switched between them.
+      # When multiple are defined, performs them one after another & switching between them.
       # Options: BREAK
       actions: BREAK
       # Radius in which the minion can operate

@@ -60,6 +60,10 @@ public class MinionBasic {
     }
 
     protected void doAction() {
+        if(!canDoAction()) {
+            return;
+        }
+
         this.actionsPerformed++;
         if(this.mProperties.isHealthBased()) {
             this.mProperties.setActionsSinceLastHealthDrop(this.mProperties.getActionsSinceLastHealthDrop()+1);

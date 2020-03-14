@@ -8,11 +8,9 @@ import java.util.UUID;
 
 public class MinionArmy {
 
-    @Getter
-    private final UUID leader;
+    @Getter private final UUID leader;
 
-    @Getter
-    private final List<Class<? extends MinionBasic>> minions = new ArrayList<>();
+    @Getter private final List<Class<? extends MinionBasic>> minions = new ArrayList<>();
 
     public MinionArmy(UUID leader) {
         this.leader = leader;
