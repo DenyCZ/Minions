@@ -8,6 +8,8 @@ import space.devport.minions.minions.minion.mEntity;
 
 public class MinionBasic {
 
+    // TODO Somehow construct or integrate with a template and level @Denyk
+
     @Getter @Setter private String Author;
     @Getter @Setter private String Id;
     @Getter private boolean isInit = false;

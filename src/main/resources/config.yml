@@ -5,6 +5,7 @@
 # Debug information
 debug-enabled: true
 
+# Internal plugin prefix, used in console only.
 plugin-prefix: '&3Minions &8>> '
 
 # Path to language file

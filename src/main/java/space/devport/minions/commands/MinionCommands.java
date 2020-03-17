@@ -1,5 +1,7 @@
 package space.devport.minions.commands;
 
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -8,6 +10,10 @@ import org.jetbrains.annotations.NotNull;
 import space.devport.minions.MinionsPlugin;
 import space.devport.minions.commands.menus.MinionsMenu;
 import space.devport.minions.commands.menus.ShopMenu;
+import space.devport.minions.minions.MinionArmy;
+import space.devport.minions.minions.MinionBasic;
+import space.devport.minions.template.MinionTemplate;
+import space.devport.minions.utils.Message;
 import space.devport.utils.messageutil.MessageBuilder;
 
 public class MinionCommands implements CommandExecutor {
@@ -24,12 +30,6 @@ public class MinionCommands implements CommandExecutor {
      * */
 
     private final MinionsPlugin plugin;
-
-    // TODO Hook to a message system
-    private final MessageBuilder notEnoughArgs = new MessageBuilder(MinionsPlugin.getInstance().getConsoleOutput().getPrefix() + "&cNot enough arguments.", "&cUsage: &7%usage%");
-    private final MessageBuilder tooManyArgs = new MessageBuilder(MinionsPlugin.getInstance().getConsoleOutput().getPrefix() + "&cToo many arguments.", "&cUsage: &7%usage%");
-
-    private final MessageBuilder invalidMinion = new MessageBuilder(MinionsPlugin.getInstance().getConsoleOutput().getPrefix() + "&cInvalid minion ID.", "&cHint: &7/%label% list [player/all]");
 
     private final MessageBuilder helpMsg = new MessageBuilder("&8&m--------&c Minions &7v&f" + MinionsPlugin.getInstance().getDescription().getVersion() + " &8&m--------");
 
@@ -69,11 +69,63 @@ public class MinionCommands implements CommandExecutor {
                 new ShopMenu("minions_shop")
                         .open(player);
                 break;
+            // TODO List all minions, now lists only owned by the player
             case "list":
+                if (args.length < 2 && checkConsole(sender))
+                    return true;
+
+                OfflinePlayer target;
+                if (args.length > 1)
+                    target = Bukkit.getOfflinePlayer(args[1]);
+                else if (!checkConsole(sender))
+                    target = (Player) sender;
+                else return true;
+
+                MinionArmy army = plugin.getMinionManager().getArmy(target.getUniqueId());
+
+                if (army.isEmpty()) {
+                    Message.NO_MINIONS.get(true).send(sender);
+                    break;
+                }
+
+                MessageBuilder builder = new MessageBuilder("&8&m--------&c " + target.getName() + " &8&m--------");
+
+                if (!army.isEmpty())
+                    for (MinionBasic minion : army.getMinions()) {
+                        // TODO Add more info
+                        builder.addLine(minion.getId() + " &8 - " + minion.getMProperties().getHealth());
+                    }
+                else builder.addLine("&cThis army is empty.");
+
+                builder.send(sender);
                 break;
             case "spawn":
+                if (checkConsole(sender))
+                    return true;
+
+                player = (Player) sender;
+
+                if (!checkTemplate(sender, label, args[1]))
+                    return true;
+
+                MinionTemplate template = plugin.getTemplateManager().getTemplate(args[1]);
+
+                int level = template.getMinimalLevel().getLevel();
+
+                if (args.length > 2)
+                    try {
+                        level = Integer.parseInt(args[2]);
+                    } catch (NumberFormatException e) {
+                        Message.HAS_TO_BE_NUMBER.get(true).send(player);
+                        break;
+                    }
+
+                plugin.getMinionManager().createMinion(player, template, level);
+
+                Message.MINION_SPAWNED.get(true).send(player);
                 break;
             case "kill":
+                new MessageBuilder("&cNot done yet.").send(sender);
                 break;
             case "help":
             default:

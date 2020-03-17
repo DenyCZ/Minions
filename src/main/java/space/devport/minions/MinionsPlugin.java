@@ -19,12 +19,19 @@ public class MinionsPlugin extends JavaPlugin {
     @Getter
     private static MinionsPlugin instance;
 
-    @Getter private Configuration cfg;
-    @Getter private ConsoleOutput consoleOutput;
-    @Getter private TemplateManager templateManager;
-    @Getter private MinionManager minionManager;
+    @Getter
+    private ConsoleOutput consoleOutput;
 
-    @Getter private String languageFile = "lang/lang_en";
+    @Getter
+    private TemplateManager templateManager;
+    @Getter
+    private MinionManager minionManager;
+
+    @Getter
+    private Configuration cfg;
+
+    @Getter
+    private String languageFile = "lang/lang_en";
 
     @Override
     public void onEnable() {
@@ -62,6 +69,8 @@ public class MinionsPlugin extends JavaPlugin {
 
         consoleOutput.setCmdSender(s);
 
+        consoleOutput.info("--====-- " + getDescription().getName() + "v " + getDescription().getVersion() + " --====--");
+
         cfg.reload();
 
         loadOptions();
@@ -75,6 +84,7 @@ public class MinionsPlugin extends JavaPlugin {
 
         consoleOutput.setCmdSender(null);
 
+        consoleOutput.info("--====-- Done --====--");
         s.sendMessage(consoleOutput.getPrefix() + StringUtil.color("&aDone.. reload took &7" + (System.currentTimeMillis() - start) + "&ams."));
     }
 
