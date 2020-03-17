@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import space.devport.minions.commands.MinionCommands;
 import space.devport.minions.minions.MinionManager;
 import space.devport.minions.template.TemplateManager;
+import space.devport.minions.utils.Message;
 import space.devport.utils.ConsoleOutput;
 import space.devport.utils.DevportUtils;
 import space.devport.utils.configutil.Configuration;
@@ -23,6 +24,8 @@ public class MinionsPlugin extends JavaPlugin {
     @Getter private TemplateManager templateManager;
     @Getter private MinionManager minionManager;
 
+    @Getter private String languageFile = "lang/lang_en";
+
     @Override
     public void onEnable() {
         instance = this;
@@ -35,6 +38,7 @@ public class MinionsPlugin extends JavaPlugin {
         cfg = new Configuration(this, "config");
 
         loadOptions();
+        Message.load();
 
         consoleOutput.info("--====-- " + getDescription().getName() + "v " + getDescription().getVersion() + " --====--");
 
@@ -61,6 +65,7 @@ public class MinionsPlugin extends JavaPlugin {
         cfg.reload();
 
         loadOptions();
+        Message.load();
 
         templateManager.reload();
         consoleOutput.info("Loaded " + templateManager.getTemplateCache().size() + " template(s)..");
@@ -76,6 +81,8 @@ public class MinionsPlugin extends JavaPlugin {
     private void loadOptions() {
         consoleOutput.setDebug(cfg.getFileConfiguration().getBoolean("debug-enabled", false));
         consoleOutput.setPrefix(cfg.getColored("plugin-prefix"));
+
+        this.languageFile = cfg.getFileConfiguration().getString("language", "lang/lang_en");
     }
 
     @Override

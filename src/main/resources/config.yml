@@ -7,6 +7,9 @@ debug-enabled: true
 
 plugin-prefix: '&3Minions &8>> '
 
+# Path to language file
+language: "lang/lang_en"
+
 # Name of the folder that contains templates
 template-folder: 'templates'
 
