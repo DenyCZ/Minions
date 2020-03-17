@@ -37,7 +37,7 @@
                     <relocations>
                         <relocation>
                             <pattern>space.devport.utils</pattern>
-                            <shadedPattern>space.devport.wertik.outposts.utils</shadedPattern>
+                            <shadedPattern>space.devport.minions.utils</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>

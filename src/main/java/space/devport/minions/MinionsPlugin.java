@@ -5,6 +5,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
+import space.devport.minions.commands.MinionCommands;
 import space.devport.minions.minions.MinionManager;
 import space.devport.minions.template.TemplateManager;
 import space.devport.utils.ConsoleOutput;
@@ -45,6 +46,8 @@ public class MinionsPlugin extends JavaPlugin {
 
         minionManager.loadAll();
         consoleOutput.info("Loaded " + minionManager.getMinionCache().size() + " minion army(ies)..");
+
+        getCommand("minions").setExecutor(new MinionCommands());
 
         consoleOutput.info("--====-- Done --====--");
         consoleOutput.info("Reload took " + (System.currentTimeMillis() - start) + "ms");

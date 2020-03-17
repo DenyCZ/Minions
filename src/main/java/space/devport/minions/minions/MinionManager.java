@@ -34,6 +34,14 @@ public class MinionManager {
 
     }
 
+    public MinionBasic getMinion(String id) {
+        for (MinionGroup group : minionGroups) {
+            // TODO
+        }
+
+        return null;
+    }
+
     public void addMinion(Player player, Class<? extends MinionBasic> minion) {
         addMinion(player.getUniqueId(), minion);
     }
