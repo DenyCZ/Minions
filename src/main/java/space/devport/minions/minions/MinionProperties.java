@@ -26,4 +26,5 @@ public class MinionProperties {
     @Getter @Setter private boolean isHealthBased;
     @Getter @Setter private int actionsSinceLastHealthDrop;
     @Getter @Setter private int allowedActionsPerHealthUnit;
+    @Getter @Setter private boolean workOffline = false;
 }
