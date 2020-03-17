@@ -10,13 +10,13 @@ public class MinionArmy {
 
     @Getter private final UUID leader;
 
-    @Getter private final List<Class<? extends MinionBasic>> minions = new ArrayList<>();
+    @Getter private final List<MinionBasic> minions = new ArrayList<>();
 
     public MinionArmy(UUID leader) {
         this.leader = leader;
     }
 
-    public void addMinion(Class<? extends MinionBasic> minion) {
+    public void addMinion(MinionBasic minion) {
         minions.add(minion);
     }
 

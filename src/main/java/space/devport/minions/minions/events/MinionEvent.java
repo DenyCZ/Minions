@@ -8,8 +8,6 @@ import space.devport.minions.minions.MinionBasic;
 
 public class MinionEvent extends Event {
 
-    // Isn't this better than copying it over each time? @Denyk
-
     private static final HandlerList handlers;
 
     @Getter

@@ -21,17 +21,13 @@ public class MinionTask {
     }
 
     private void startActionTask() {
-        for(MinionGroup mGroup : MinionsPlugin.getInstance().getMinionManager().getMinionGroups()) {
+        for (MinionGroup mGroup : MinionsPlugin.getInstance().getMinionManager().getMinionGroups()) {
             BukkitTask runnable = Bukkit.getScheduler().runTaskTimer(MinionsPlugin.getInstance(), new Runnable() {
                 @Override
                 public void run() {
-                    final List<Class<? extends MinionBasic>> minions = mGroup.getMinions();
-                    for(Class<? extends MinionBasic> minion : minions) {
-                        try {
-                            minion.getDeclaredMethod("doAction").invoke(minion);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                    final List<MinionBasic> minions = mGroup.getMinions();
+                    for (MinionBasic minion : minions) {
+                        minion.doAction();
                     }
                 }
             }, (50 + new Random().nextInt(100)), 20L);
@@ -41,7 +37,7 @@ public class MinionTask {
     }
 
     public void stopTasks() {
-        for(Integer id : taskIds) {
+        for (Integer id : taskIds) {
             Bukkit.getScheduler().cancelTask(id);
         }
     }

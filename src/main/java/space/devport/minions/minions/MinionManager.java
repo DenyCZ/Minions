@@ -10,10 +10,13 @@ import java.util.UUID;
 
 public class MinionManager {
 
-    @Getter private final HashMap<UUID, MinionArmy> minionCache = new HashMap<>();
-    @Getter private final List<MinionGroup> minionGroups = new ArrayList<>();
+    @Getter
+    private final HashMap<UUID, MinionArmy> minionCache = new HashMap<>();
+    @Getter
+    private final List<MinionGroup> minionGroups = new ArrayList<>();
 
-    @Getter private MinionTask minionTask = new MinionTask();
+    @Getter
+    private MinionTask minionTask = new MinionTask();
 
     // Update minions based on templates & their levels, bcs they could change on plugin reload
     public void reloadAll() {
@@ -42,17 +45,17 @@ public class MinionManager {
         return null;
     }
 
-    public void addMinion(Player player, Class<? extends MinionBasic> minion) {
+    public void addMinion(Player player, MinionBasic minion) {
         addMinion(player.getUniqueId(), minion);
     }
 
     // Add a minion to owners army
-    public void addMinion(UUID uniqueID, Class<? extends MinionBasic> minion) {
+    public void addMinion(UUID uniqueID, MinionBasic minion) {
         MinionArmy army = getArmy(uniqueID);
         army.addMinion(minion);
 
         MinionGroup mGroup = getLast();
-        if(mGroup == null || mGroup.isFull()) {
+        if (mGroup == null || mGroup.isFull()) {
             createGroup();
         }
 
@@ -81,6 +84,6 @@ public class MinionManager {
     }
 
     private MinionGroup getLast() {
-        return minionGroups.size() > 0 ? minionGroups.get(minionGroups.size()-1) : null;
+        return minionGroups.size() > 0 ? minionGroups.get(minionGroups.size() - 1) : null;
     }
 }

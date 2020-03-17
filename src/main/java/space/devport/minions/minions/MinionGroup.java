@@ -28,14 +28,14 @@ public class MinionGroup {
 
     private final Integer MAXSIZE = 20;
 
-    @Getter private final List<Class<? extends MinionBasic>> minions = new ArrayList<>();
-
+    @Getter
+    private final List<MinionBasic> minions = new ArrayList<>();
 
     public boolean isFull() {
         return minions.size() == MAXSIZE;
     }
 
-    public boolean addMinion(Class<? extends MinionBasic> minion) {
-        return minions.add(minion);
+    public void addMinion(MinionBasic minion) {
+        minions.add(minion);
     }
 }
