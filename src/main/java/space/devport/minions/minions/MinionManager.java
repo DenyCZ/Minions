@@ -39,27 +39,13 @@ public class MinionManager {
 
     }
 
-    public MinionBasic getMinion(String id) {
-        for (MinionGroup group : minionGroups) {
-            // TODO
-        }
-
+    public MinionBasic getMinion(String uuid) {
         return null;
-    }
-
-    @NotNull
-    public MinionBasic createMinion(Player player, MinionTemplate template, int level) {
-        return createMinion(player.getUniqueId(), template, level);
     }
 
     // Add a minion to owners army
     @NotNull
-    public MinionBasic createMinion(UUID uniqueID, MinionTemplate template, int level) {
-
-        // Create the minion
-        MinionBasic minion = new MinionBasic();
-        minion.getMProperties().setLevel(level);
-        // TODO Template integration
+    public MinionBasic createMinion(UUID uniqueID, MinionBasic minion) {
 
         MinionArmy army = getArmy(uniqueID);
         army.addMinion(minion);
@@ -73,12 +59,10 @@ public class MinionManager {
         return minion;
     }
 
-    @NotNull
     public MinionArmy getArmy(Player player) {
         return getArmy(player.getUniqueId());
     }
 
-    @NotNull
     public MinionArmy getArmy(UUID uniqueID) {
         return minionCache.getOrDefault(uniqueID, new MinionArmy(uniqueID));
     }

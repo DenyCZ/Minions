@@ -137,7 +137,7 @@ public class MinionCommands implements CommandExecutor {
 
     private boolean checkTemplate(CommandSender s, String label, String name) {
         if (plugin.getTemplateManager().getTemplate(name) != null) {
-            new MessageBuilder("&cTemplate is invalid.", "&cHint: &7/" + label + " templates")
+            new MessageBuilder("&cTemplate is invalid. &cHint: &7/" + label + " templates")
                     .send(s);
             return false;
         }

@@ -20,6 +20,10 @@ public class MinionTask {
         startActionTask();
     }
 
+
+    //TODO: TOHLE NEFUNGUJE
+    // udělej jednu tasku, která bude checkovat kolik existuje skupin a jestli v každé běží jeho taska
+    // Takhle by to nebralo nové skupiny, protože metoda se prrovede jen jednou
     private void startActionTask() {
         for (MinionGroup mGroup : MinionsPlugin.getInstance().getMinionManager().getMinionGroups()) {
             BukkitTask runnable = Bukkit.getScheduler().runTaskTimer(MinionsPlugin.getInstance(), new Runnable() {

@@ -27,4 +27,6 @@ public class MinionProperties {
     @Getter @Setter private int actionsSinceLastHealthDrop;
     @Getter @Setter private int allowedActionsPerHealthUnit;
     @Getter @Setter private boolean workOffline = false;
+    @Getter @Setter private boolean canPlaceHead = true;
+    @Getter @Setter private boolean commandOnly = false;
 }
