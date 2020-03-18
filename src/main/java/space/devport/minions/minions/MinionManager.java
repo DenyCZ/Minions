@@ -2,8 +2,6 @@ package space.devport.minions.minions;
 
 import lombok.Getter;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
-import space.devport.minions.template.MinionTemplate;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,8 +42,7 @@ public class MinionManager {
     }
 
     // Add a minion to owners army
-    @NotNull
-    public MinionBasic createMinion(UUID uniqueID, MinionBasic minion) {
+    public void addMinion(UUID uniqueID, MinionBasic minion) {
 
         MinionArmy army = getArmy(uniqueID);
         army.addMinion(minion);
@@ -56,7 +53,6 @@ public class MinionManager {
         }
 
         getLast().addMinion(minion);
-        return minion;
     }
 
     public MinionArmy getArmy(Player player) {

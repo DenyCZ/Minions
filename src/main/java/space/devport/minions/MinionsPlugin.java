@@ -67,7 +67,7 @@ public class MinionsPlugin extends JavaPlugin {
     public void reload(CommandSender s) {
         long start = System.currentTimeMillis();
 
-        consoleOutput.setCmdSender(s);
+        consoleOutput.addListener(s);
 
         consoleOutput.info("--====-- " + getDescription().getName() + "v " + getDescription().getVersion() + " --====--");
 
@@ -82,7 +82,7 @@ public class MinionsPlugin extends JavaPlugin {
         minionManager.reloadAll();
         consoleOutput.info("Loaded " + minionManager.getMinionCache().size() + " minion army(ies)..");
 
-        consoleOutput.setCmdSender(null);
+        consoleOutput.removeListener(s);
 
         consoleOutput.info("--====-- Done --====--");
         s.sendMessage(consoleOutput.getPrefix() + StringUtil.color("&aDone.. reload took &7" + (System.currentTimeMillis() - start) + "&ams."));
@@ -90,7 +90,7 @@ public class MinionsPlugin extends JavaPlugin {
 
     private void loadOptions() {
         consoleOutput.setDebug(cfg.getFileConfiguration().getBoolean("debug-enabled", false));
-        consoleOutput.setPrefix(cfg.getColored("plugin-prefix"));
+        consoleOutput.setPrefix(cfg.getColoredString("plugin-prefix", ""));
 
         this.languageFile = cfg.getFileConfiguration().getString("language", "lang/lang_en");
     }

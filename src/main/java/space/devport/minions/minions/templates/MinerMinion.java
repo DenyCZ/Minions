@@ -22,13 +22,13 @@ public class MinerMinion extends MinionBasic {
     }
 
     @Override
-    protected void onSpawn() {
+    public void onSpawn() {
         super.onSpawn();
         this.getMinionEntity().getArmorStand().setItemInHand(new ItemStack(Material.DIAMOND_PICKAXE, 1));
     }
 
     @Override
-    protected void doAction() {
+    public void doAction() {
         super.doAction();
 
         Location standingLocation = getMinionEntity().getArmorStand().getLocation();

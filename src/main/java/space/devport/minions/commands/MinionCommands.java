@@ -120,7 +120,11 @@ public class MinionCommands implements CommandExecutor {
                         break;
                     }
 
-                plugin.getMinionManager().createMinion(player, template, level);
+                MinionBasic minion = new MinionBasic();
+
+                minion.getMProperties().setLevel(level);
+
+                plugin.getMinionManager().addMinion(player.getUniqueId(), minion);
 
                 Message.MINION_SPAWNED.get(true).send(player);
                 break;

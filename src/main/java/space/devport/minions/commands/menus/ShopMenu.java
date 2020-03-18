@@ -18,6 +18,7 @@ public class ShopMenu extends Menu {
     public void onOpen() {
         new MessageBuilder("&cThis menu is not done yet.")
                 .send(player);
+        close();
     }
 
     @Override

@@ -91,6 +91,4 @@ public class MinionBasic {
     public void onUnload() {
 
     }
-
-
 }

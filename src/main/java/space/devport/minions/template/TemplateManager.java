@@ -43,7 +43,7 @@ public class TemplateManager {
             MinionTemplate template = new MinionTemplate(name);
             Configuration storage = template.getStorage();
 
-            template.setDisplayName(storage.getColored("display-name"));
+            template.setDisplayName(storage.getColoredString("display-name"));
 
             // Load levels
             if (storage.getFileConfiguration().getConfigurationSection("levels") != null)

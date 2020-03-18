@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 public class MinionProperties {
 
-    // TODO: Reading from Config @Wertik // Dont @ me u bastard
+    // TODO: Reading/Saving @Wertik
 
     @Getter @Setter private int radius;
     @Getter @Setter private int level;
